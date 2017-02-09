@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>Entry posted at {{entry.created}}</div>
+<div class="title">entry title: {{entry.title}}</div>
+<div class="text">entry text: {{entry.entry}}</div>
+
+
+<a href="/">Back to main page</a>
+
+{% endblock %}
