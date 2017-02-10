@@ -4,11 +4,16 @@
 
 {% for entry in entries %}
 	<a href="/submit">Submit entries</a>
+	<br>
 	<div class="entries">
 		<div class="art-title">
-			<a href="/success?id={{entry.key().id()}}">{{entry.title}}</a>
+			Entry title: <a href="/post?id={{entry.key().id()}}">{{entry.title}}</a>
+			<br>
+			PostID = {{entry.key().id()}}
+			<br>
+			Posted by user: {{entry.user}}
 		</div>
-		<pre class="art-body">{{entry.entry}}</pre>
+		Entry: <pre class="art-body">{{entry.entry}}</pre>
 	</div>
 
 {% endfor %}
