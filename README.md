@@ -12,4 +12,12 @@ This project must be deployed on google app engine.
 
 To do this go to https://console.cloud.google.com/appengine and start a new project.
 
-From the console you can clone this repository 
+From the console you can clone this repository by typing 
+
+`$ git clone https://github.com/Andurshurrdurr/Udacity_blog.git`
+
+and deploy it to app engine by running:
+
+`$ gcloud app deploy app.yaml`
+
+Then follow the instructions given by the terminal
