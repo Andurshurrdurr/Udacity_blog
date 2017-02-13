@@ -2,11 +2,39 @@
 
 {% block content %}
 
-<div>Post created: {{entry.created}}</div>
-Title: <div class="title">{{entry.title}}</div>
-Post: <div class="text">{{entry.password}}</div>
-
-
-<a href="/">Back to main page</a>
+	<div>Post created: {{entry.created}}</div>
+	{% if op %}
+		<form method="post">
+			<input type="hidden" name="id" value="entry.key().id()">
+			<label>
+				<div>Title</div>
+				<input type="text" name="title" value="{{entry.title}}">
+			</label>
+			<label>
+				<div>Entry</div>
+				<textarea name="entry">{{entry.entry}}</textarea>
+			</label>
+			<br>
+			<input type="submit"> <input type="submit" name="delete" value="Delete">
+			<div class="error"> {{ error }}</div>
+		</form>
+	{% else %}
+		Title: <div class="title">{{entry.title}}</div>
+		Post: <div class="text">{{entry.entry}}</div>
+		Submitted by: <a href="/user?id={{entry.user.key().id()}}"><div class="user">{{entry.user.username}}</div></a>
+	{% endif %}
+	Likes: {{likes}}
+	<br>
+	{{error}}
+	<br>
+	{% for c in comments %}
+		Comment: <br>
+			{{c.comment}}
+			<br>
+			Posted at: {{c.created}} by user: <a href="/user?id={{c.user.key().id()}}">{{c.user.username}}</a>
+			<br>
+	{% endfor %}
+	<br>
+	<a href="/">Back to main page</a>
 
 {% endblock %}

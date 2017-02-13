@@ -5,14 +5,24 @@
 <head>
 	<title>Blog</title>
 </head>
-	<body style="margin: 0">
+<body style="margin: 0">
 	<h1 style="background-color: #ddd; color: #888; margin:0; height:50px;">
-		Blog website
+		<a href="/" style="text-decoration:none;">User panel</a>
 	</h1>
+	{% if usertop %}
+		Logged in as {{usertop}} <a href="/logout">log out</a>
+	{% else %}
+		<a href="/login">Login</a> or
+		<a href="/signup">Sign up</a>
+	{% endif %}
+	| <a href="/submit">Submit entry</a>
+
+	<br>
+	<br>
 
 	{% block content %}
 	{% endblock %}
 
-	</body>
+</body>
 
 </html>

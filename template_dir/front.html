@@ -11,9 +11,18 @@
 			<br>
 			PostID = {{entry.key().id()}}
 			<br>
-			Posted by user: {{entry.user}}
+			Posted by user: <a href="/user?id={{entry.user.key().id()}}"><div class="user">{{entry.user.username}}</div></a>
 		</div>
 		Entry: <pre class="art-body">{{entry.entry}}</pre>
+		<a href="/post?id={{entry.key().id()}}&like=True">Like!</a>
+		<form action="/post">
+			<label>
+			<div>Comment:</div>
+			<input type="hidden" name="id" value="{{entry.key().id()}}">
+			<textarea name="comment">{{comment}}</textarea>
+			<input type="submit">
+			</label>
+		</form>
 	</div>
 
 {% endfor %}

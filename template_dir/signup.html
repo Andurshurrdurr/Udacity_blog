@@ -6,21 +6,21 @@
 	<table>
 		<tr>
 			<td>username:</td>
-			<td><input type="text" name="username" value="{{username}}"></td>
+			<td><input type="text" name="username" value="{{username}}" required></td>
 			<td>{{usermsg}}</td></tr>
 		<tr>
 			<td>password:</td>
-			<td><input type="password" name="password"></td>
+			<td><input type="password" name="password" required></td>
 			<td>{{passmsg}}</td>
 		</tr>
 		<tr>
 			<td>verify:</td>
-			<td><input type="password" name="verify"></td>
+			<td><input type="password" name="verify" required></td>
 			<td>{{verifymsg}}</td>
 		</tr>
 		<tr>
 			<td>email:</td>
-			<td><input type="email" name="email" value="{{mail}}"></td>
+			<td><input type="email" name="email" value="{{mail}}" optional></td>
 			<td>{{mailmsg}}</td>
 		</tr>
 		
