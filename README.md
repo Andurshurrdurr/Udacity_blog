@@ -21,3 +21,9 @@ and deploy it to app engine by running:
 `$ gcloud app deploy app.yaml`
 
 Then follow the instructions given by the terminal
+
+### Running example
+
+The project is currently publicly running at https://basic-blog-158212.appspot.com
+
+
