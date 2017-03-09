@@ -4,9 +4,18 @@ This project is for the Udacity full stack developer course spring 2017.
 
 The project features a functioning blog web app deployment ready for google app engine.
 
-The application uses jinja for templating and app engine for deployment
+The application uses jinja for templating and app engine for development and deployment
 
-### How to deploy
+### Instructions for development
+
+1. Clone this repository `$ git clone https://github.com/Andurshurrdurr/Udacity_blog.git´
+2. Download and install the gcloud SDK. Follow the instructions given by google for your OS:
+https://cloud.google.com/sdk/docs/quickstarts
+3. Go to the project folder (where you cloned the repo) in your terminal ´$ cd ~/projectfolder/
+4. Run ´$ dev_appserver.py ./´
+5. Open your browser and go to localhost:8000
+
+### Instructions for deployment
 
 This project must be deployed on google app engine.
 
