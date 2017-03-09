@@ -184,11 +184,15 @@ class post(Handler): # Shows info and options for specific blogpost
 					entry.title = self.request.get("title")
 					entry.entry = self.request.get("entry")
 					entry.put()
+		else: # User not logged in -> Redirecting to login
+			self.redirect("/login")
 
 class submit(Handler): # Submits a new blog entry
 	def get(self): # Validates and renders submit form
 		if self.validate():
 			self.render("submit.html")
+		else: # User not logged in -> Redirecting to login
+			self.redirect("/login")
 
 	def post(self): # Validates and posts a new entry
 		if self.validate(): 
