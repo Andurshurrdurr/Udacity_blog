@@ -109,7 +109,7 @@ class Handler(webapp2.RequestHandler): # Main handler
 
 # --------------------------------------------- Handlers for each page after this comment --------------------------------
 
-class MainPage(Handler): # Handler for / - Renders all entries
+class mainpage(Handler): # Handler for / - Renders all entries
 	def get(self):
 		entries = db.GqlQuery("SELECT * FROM Entries ORDER BY created DESC")
 		self.render("front.html", entries=entries)
@@ -156,10 +156,11 @@ class post(Handler): # Shows info and options for specific blogpost
 			else: # User not logged in -> Redirecting to login
 				self.redirect("/login")
 
-		op = False
 		if entry.user.username == user: # Check to see if user is original poster (op)
 			op = True
 			print "User is OP"
+		else: 
+			op = False
 		print entry.user.key().id()
 
 		comments = list(db.GqlQuery("SELECT * FROM Comments ORDER BY created DESC")) # Get comments
@@ -184,6 +185,7 @@ class post(Handler): # Shows info and options for specific blogpost
 					entry.title = self.request.get("title")
 					entry.entry = self.request.get("entry")
 					entry.put()
+			self.redirect("/")
 		else: # User not logged in -> Redirecting to login
 			self.redirect("/login")
 
@@ -287,7 +289,7 @@ class welcome(Handler): # Renders welcome page
 		user = self.request.cookies.get('username')
 		self.render("welcome.html", user=user)
 
-app = webapp2.WSGIApplication([	('/', MainPage), # For routing URL to right handler
+app = webapp2.WSGIApplication([	('/', mainpage), # For routing URL to right handler
 								('/login', login),
 								('/logout', logout), 
 								('/signup', signup), 

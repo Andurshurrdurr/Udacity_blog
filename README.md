@@ -35,4 +35,9 @@ Then follow the instructions given by the terminal
 
 The project is currently publicly running at https://basic-blog-158212.appspot.com
 
+### TODO
+
+- Use comments instead of docstrings
+- Use a more logical and modularized pattern for handlers  
+
 
