@@ -5,7 +5,7 @@
 	<div>Post created: {{entry.created}}</div>
 	{% if op %}
 		<form method="post">
-			<input type="hidden" name="id" value="entry.key().id()">
+			<input type="hidden" name="id" value="{{entry.key().id()}}">
 			<label>
 				<div>Title</div>
 				<input type="text" name="title" value="{{entry.title}}">
@@ -29,7 +29,19 @@
 	<br>
 	{% for c in comments %}
 		Comment: <br>
-			{{c.comment}}
+			{% if user == c.user.username %}
+				<form action="/post">
+					<input type="hidden" name="id" value="{{entry.key().id()}}"> 
+					<input type="hidden" name="cid" value="{{c.key().id()}}">
+					<input type="text" name="comment" value="{{c.comment}}">
+					<br>
+					<input type="submit" value="submit">
+					<br>
+					<input type="submit" name="delete" value="delete">
+				</form>
+			{% else %}
+				{{c.comment}}
+			{% endif %}
 			<br>
 			Posted at: {{c.created}} by user: <a href="/user?id={{c.user.key().id()}}">{{c.user.username}}</a>
 			<br>

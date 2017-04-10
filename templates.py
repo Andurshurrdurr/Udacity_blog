@@ -135,16 +135,35 @@ class post(Handler):  # Shows info and options for specific blogpost
 		post_id = int(self.request.get('id'))
 		entry = Entries.get_by_id(post_id)
 		comment = self.request.get('comment')
+		print self.request.get("delete")
+		print "---- delete ----"
+		
 		user = self.validate()
 		error = ""
+		updated = False
 
 		if comment:  # Got comment
+			cid = self.request.get('cid')
 			if user == entry.user.username:  # Check to see commenter = poster
 				error="Cannot comment your own post"
 			elif user:  # Other user
-				Comments(entry=entry, user=list(db.GqlQuery(
-						"SELECT * FROM Users WHERE username = '%s'" % user)
-							)[0],comment=comment).put()
+				if cid != '': # Editing commend, update in db
+					com = Comments.get_by_id(int(cid))
+					if com.user.username == user:
+						com.comment = comment
+						com.put()
+						if self.request.get("delete"):
+							com.delete()
+						else: 
+							pass
+						updated = True
+					else: # Not valid
+						self.write("Not valid user!")
+				else: # New comment
+					Comments(entry=entry, user=list(db.GqlQuery(
+							"SELECT * FROM Users WHERE username = '%s'" 
+							% user))[0],comment=comment).put()
+					updated = True
 				print "added comment " + comment
 			else:  # User not logged in -> Redirecting to login
 				self.redirect("/login")
@@ -178,15 +197,22 @@ class post(Handler):  # Shows info and options for specific blogpost
 						"SELECT * FROM Comments ORDER BY created DESC"))
 		clist = []
 		for c in comments: # Filter out only comments belonging to this post
+			print "filtering comments"
 			if c.entry.key().id() == post_id:
 				clist.append(c)
+			else:
+				print "not this one"
 		likes = str(entry.likes) # Get likes
-		self.render("post.html", 
-					op=op, 
-					entry=entry, 
-					likes=likes, 
-					comments=clist, 
-					error=error)
+		if updated == True:
+			self.render("updated.html")
+		else:
+			self.render("post.html", 
+						op=op, 
+						user=user,
+						entry=entry, 
+						likes=likes, 
+						comments=clist, 
+						error=error)
 	
 	def post(self): # Post handles updates to the blog entry
 		user = self.validate()
@@ -196,12 +222,13 @@ class post(Handler):  # Shows info and options for specific blogpost
 			if entry.user.username == user: # Validation up till here
 				if self.request.get("delete") == "Delete":
 					entry.delete()
-					self.redirect('/')
 				else:
 					entry.title = self.request.get("title")
 					entry.entry = self.request.get("entry")
 					entry.put()
-			self.redirect("/")
+				self.render("updated.html")
+			else:
+				self.redirect("/")
 		else: # User not logged in -> Redirecting to login
 			self.redirect("/login")
 
