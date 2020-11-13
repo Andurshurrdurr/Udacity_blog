@@ -15,7 +15,7 @@ Instructions on getting a local copy of the project running for development and 
 
 ### Installing
 
-1. Clone this repository `$ git clone https://github.com/Andurshurrdurr/Udacity_blog.git`
+1. Clone this repository
 2. Download and install the gcloud SDK. Follow the instructions given by google for your OS:
 https://cloud.google.com/sdk/docs/quickstarts
 3. Go to the project folder (where you cloned the repo) in your terminal `$ cd ~/projectfolder/`
@@ -27,25 +27,16 @@ https://cloud.google.com/sdk/docs/quickstarts
 
 1. Go to https://console.cloud.google.com/appengine and start a new project.
 2. Open the console on google cloud
-3. From the console you can clone this repository by typing
-
-`$ git clone https://github.com/Andurshurrdurr/Udacity_blog.git`
-
+3. From the console you can clone this repo
 4. Move the terminal into the directory and deploy it to app engine by running:
 
-`$ cd Udacity_blog && cloud app deploy app.yaml`
+`$ cd Gcloud_Blog && cloud app deploy app.yaml`
 
 5. Follow the instructions given by the terminal
 
 ### Running example
 
 The project is currently publicly running at https://basic-blog-158212.appspot.com
-
-## About Udacity
-
-![Udacity](https://in.udacity.com/assets/images/svgs/logo_wordmark.svg)
-
-Udacity is a for-profit educational organization founded by Sebastian Thrun, David Stavens, and Mike Sokolsky offering massive open online courses. [Wikipedia](https://en.wikipedia.org/wiki/Udacity)
 
 This project is a part of my Udacity Full stack webdeveloper nanodegree.
 
